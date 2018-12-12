@@ -2,7 +2,7 @@ import boto3
 
 if __name__ == "__main__":
 
-    imageFile="C:\\Users\\santo\\Downloads\\Backup files\\Face_recognition\\aws\\obama.jpg"
+    imageFile="image.jpg"       # image file to detect labels
     client=boto3.client('rekognition')
    
     with open(imageFile, 'rb') as image:
