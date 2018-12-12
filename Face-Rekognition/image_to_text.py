@@ -2,18 +2,18 @@ import boto3
 
 if __name__ == "__main__":
 
-    bucket='reco-face'
-    photo='car.jpg'
+    bucket='reko-face'
+    imageFile='car.jpg'
 
     client=boto3.client('rekognition')
 
-  
-    response=client.detect_text(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
+    with open(imageFile, 'rb') as image:
+        response=client.detect_text(Image={'Bytes': image.read()})
 
                         
     textDetections=response['TextDetections']
-    print (response)
-    print ('Matching faces')
+    #print (response)
+    #print ('Matching faces')
     for text in textDetections:
             print ('Detected text:' + text['DetectedText'])
             print ('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
