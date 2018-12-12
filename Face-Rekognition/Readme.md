@@ -90,8 +90,84 @@ access_key     ****************N5XA shared-credentials-file
 secret_key     ****************jPTy shared-credentials-file
     region                us-east-2      config-file    ~/.aws/config
 ```
+## Step 4:
+### Create a s3 Bucket to store images and videos
+
+Go back to console home page
+
+Search for Amazon S3 in find services 
+
+Now click one create bucket
+
+Enter a name for the new bucket Example: reko-face
+
+Click next the default permission settings are perfect for out project
+
+Finally click finish to create the new bucket
+
 
 Now it time to test out the services!
+
+Execute the local.py file and pass an image file.
+
+### Sample Image
+![alt text](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/image.jpg)
+
+### Obtained output
+```
+Detected labels in image.jpg
+Machine : 99.9872055053711
+Wheel : 99.9872055053711
+Transportation : 99.89230346679688
+Bicycle : 99.89230346679688
+Vehicle : 99.89230346679688
+Bike : 99.89230346679688
+Pet : 98.07502746582031
+Canine : 98.07502746582031
+Dog : 98.07502746582031
+Animal : 98.07502746582031
+Mammal : 98.07502746582031
+Automobile : 96.0145034790039
+Car : 96.0145034790039
+Husky : 72.07845306396484
+Cat : 60.86927032470703
+Spoke : 57.59575271606445
+Plant : 56.08732604980469
+Tree : 56.08732604980469
+Wood : 56.078216552734375
+Strap : 55.54518127441406
+Done...
+```
+
+You can see from the local.py file that we are calling the service "client.detect_labels"
+
+This service detects all the labels present in the image.jpg file
+
+Now execute the image_to_text.py file and pass an image
+
+### Sample image
+![alt text](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/car.jpg)
+
+### Obtained output:
+```
+Detected text:IND HR26DK8337
+Confidence: 96.51%
+Id: 0
+Type:LINE
+Detected text:HR26DK8337
+Confidence: 99.97%
+Id: 2
+Parent Id: 0
+Type:WORD
+Detected text:IND
+Confidence: 93.05%
+Id: 1
+Parent Id: 0
+Type:WORD
+```
+
+
+
 
 
 
