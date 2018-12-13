@@ -106,7 +106,12 @@ Click next the default permission settings are perfect for out project
 Finally click finish to create the new bucket
 
 
-Now it time to test out the services!
+## Now it time to test out the services!
+
+- There are two ways to use the different API calls  on images and videos
+- Load the images locally or load the images from amazon's S3.
+
+### First let us call the API services on local images
 
 Execute the local.py file and pass an image file.
 
@@ -139,11 +144,14 @@ Strap : 55.54518127441406
 Done...
 ```
 
-You can see from the local.py file that we are calling the service "client.detect_labels"
+You can see from this [line](https://github.com/santoshmn26/AWS-Rekognition/blob/a24bdc7c7f949783592d3bfc5f655c8cbc71d054/Face-Rekognition/local.py#L5) in the local.py file that we are loading the image locally and notice this [line](https://github.com/santoshmn26/AWS-Rekognition/blob/a24bdc7c7f949783592d3bfc5f655c8cbc71d054/Face-Rekognition/local.py#L9) where we are calling the service **"client.detect_labels"**
 
-This service detects all the labels present in the image.jpg file
 
-Now execute the image_to_text.py file and pass an image
+**This service detects all the labels present in the image.jpg file**
+
+Now execute the [image_to_text.py](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/image_to_text.py) file and pass an image
+
+Notice the [line](https://github.com/santoshmn26/AWS-Rekognition/blob/a24bdc7c7f949783592d3bfc5f655c8cbc71d054/Face-Rekognition/image_to_text.py#L6) here also we are loading the image from local path
 
 ### Sample image
 ![alt text](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/car.jpg)
@@ -165,6 +173,44 @@ Id: 1
 Parent Id: 0
 Type:WORD
 ```
+### Now lets try using API calls on images stored in amazon's s3
+
+First step is to load the image into s3.
+
+Execute the [upload_to_s3.py](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/upload_to_s3.py) file and pass a image file and a name to store in s3
+
+Example:
+```
+python upload_to_s3   "/Downloads/images/car.jpg"  "honda.jpg"
+```
+
+We can verify if the image is uploaded by executing [list_of_files_in_s3.py](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/list_of_files_in_s3.py)
+
+This script returns a list of names of all the files stored in s3.
+
+Now once the images is loaded successfully into s3, we can perform various operations using API calls
+
+Execute the [load_image_from_s3.py](https://github.com/santoshmn26/AWS-Rekognition/blob/master/Face-Rekognition/load_image_from_s3.py) file and pass a name of the image stored in s3 followed by the bucket name where theimage is tored.
+
+Example:
+```
+python load_image_from_s3.py "honda.jpg" reko-face
+```
+
+Output:
+```
+Detected labels in honda.jpg
+Car : 97.56544494628906
+Automobile : 97.56544494628906
+Vehicle : 97.56544494628906
+Transportation : 97.56544494628906
+Bumper : 92.99971771240234
+License Plate : 85.33448791503906
+Done...
+```
+
+## Using Amazon's Face Rekognition service
+
 
 
 
