@@ -48,9 +48,9 @@ if __name__ == "__main__":
     response=attempt_login(login_attempt)                       
     faceMatches=response['FaceMatches']
     for match in faceMatches:
-        print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
         match['Face']['ExternalImageId']=match['Face']['ExternalImageId'].split('.')
-        print('ExternalImageId:', match['Face']['ExternalImageId'][0])
+        print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
+        print ('ExternalImageId:', match['Face']['ExternalImageId'][0])
         os.remove("screenshot.jpg")             # Removing the saved snapshot of the user
         
 #--------------------------------------------------------------------------------------------------------------------------------
